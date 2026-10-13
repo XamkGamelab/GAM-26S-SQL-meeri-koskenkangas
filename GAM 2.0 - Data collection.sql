@@ -77,8 +77,101 @@ where name = 'Xavier49';
 	Show their player ID and name.
 	Order the results alphabetically by name. */
 	
-*/
+
 select player_id, name
 from players
 where name like '%18%'
 order by name asc;
+*/
+
+/*
+	Query 6
+	
+	Write a query that retrieves all completed matches where:
+	    player_0_id is not null, and
+	    player_1_id is not null.
+	
+	Show the match ID and the two player IDs.
+	Order the matches by their completion time, newest first.
+
+
+select id, player_0_id, player_1_id
+from match_end
+where player_0_id is not null and player_1_id is not null
+order by end_time desc;
+*/
+
+/*
+	Query 7
+
+	Write a query that shows the twenty (20) most recently completed matches from the match_end table.
+	Show enough information for someone reading the result to identify:
+	    the match
+	    the completion time
+	    the participating players
+	    the winner
+	
+	Order the results from the most recently completed match to the oldest.
+
+
+select id, end_time, player_0_id, player_1_id, winner_id
+from match_end
+where player_0_id is not null and player_1_id is not null
+order by end_time desc;
+*/
+
+/*
+	Query 8
+
+	Retrieve all sessions belonging to the player named:	
+	ElbertKihn.	
+	Show:	
+	    session ID
+	    start time
+
+	Order the sessions chronologically.	
+	
+	Hint: The sessions table stores the player_id, while the player's name is stored in the players table. 
+	Think about how you can obtain the ID you need without using a JOIN.
+
+
+	-- I need the name column from the players table
+	
+	select name, player_id
+	from players
+	where name = 'ElbertKihn';
+
+	and
+	
+	select id, start_time
+	from sessions
+	order by start_time desc;
+
+	-- Also the player_id has to be the same so uhhh
+
+
+select id, start_time
+from players t1, sessions t2
+where t1.name = 'ElbertKihn' and t1.player_id = t2.player_id
+order by start_time desc;
+*/
+
+/*
+	Query 9
+
+	Retrieve all completed matches in which ElbertKihn participated.
+	
+	A player may appear as either:	
+	    player_0_id, or
+	    player_1_id.
+		
+	Show:	
+	    match ID
+	    player 0
+	    player 1
+	    winner
+	    completion time
+	
+	Do not use a JOIN.	
+	Pay particular attention to the OR condition.
+*/
