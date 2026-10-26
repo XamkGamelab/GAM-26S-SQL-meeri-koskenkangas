@@ -236,11 +236,39 @@ order by end_time desc;
 	
 	Order the results chronologically.
 
-*/
+
 select 	id as session_id,
 		player_id,
 		start_time
 from sessions
 where start_time between '2026-09-23 15:00:00' and '2026-09-23 15:05:00'
 order by start_time asc;
+*/
 
+/*
+	Query 12
+	
+	Retrieve all completed matches where either:
+	    ElbertKihn participated, or
+	    the match was completed after 2026-09-23 18:00:00.
+	
+	Show:
+	    match ID
+	    completion time
+	    player 0
+	    player 1
+	    winner
+	
+	Order by completion time, newest first.
+	
+	Be careful about how AND and OR interact.
+
+*/
+select * from match_end
+
+where 	
+	player_0_id in (select player_id from players where name = 'ElbertKihn') or
+	player_1_id in (select player_id from players where name = 'ElbertKihn') or
+	end_time >'2026-09-23 18:00:00'
+	
+order by end_time desc;
