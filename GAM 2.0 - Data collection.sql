@@ -288,10 +288,43 @@ order by end_time desc;
 	
 	Order the results from oldest to newest.
 
-*/
 
 select name, created_at
 from players
 order by created_at asc
 limit 10;
+*/
 
+/*
+	Query 14
+	
+	Retrieve all records from guild_members belonging to a particular guild ID that you select from the dataset.
+	
+	Show:
+	    guild ID
+	    player ID
+	    rank
+	
+	Order the results by rank.
+	
+	Before writing the query, inspect the data and choose a guild that has at least three members.
+
+
+select * from guilds
+order by name asc
+
+wireless cum, d0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae
+*/
+
+select 
+	t1.guild_id, 
+	t1.id as player_id,
+	t1.rank
+	
+from 
+	guild_members t1, 
+	guilds t2
+	
+where t1.guild_id = 'd0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae' and t2.id = 'd0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae' 
+	
+order by rank asc;
