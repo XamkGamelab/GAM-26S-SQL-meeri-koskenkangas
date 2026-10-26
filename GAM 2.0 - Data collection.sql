@@ -263,12 +263,35 @@ order by start_time asc;
 	
 	Be careful about how AND and OR interact.
 
-*/
+
 select * from match_end
 
 where 	
 	player_0_id in (select player_id from players where name = 'ElbertKihn') or
 	player_1_id in (select player_id from players where name = 'ElbertKihn') or
-	end_time >'2026-09-23 18:00:00'
+	end_time > '2026-09-23 18:00:00'
+	-- greater than because a bigger number on the timestamp means that it's after the minimum timestamp (just explaining my logic if I get this wrong)
 	
 order by end_time desc;
+
+-- ElbertKihn player id: ee58f6d6-3195-abed-ae39-ea8d0a709195
+*/
+
+/*
+	Query 13
+
+	Retrieve the 10 oldest player registrations.
+	
+	Show:
+	    player name
+	    created_at
+	
+	Order the results from oldest to newest.
+
+*/
+
+select name, created_at
+from players
+order by created_at asc
+limit 10;
+
