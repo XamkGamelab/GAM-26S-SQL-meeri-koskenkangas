@@ -205,7 +205,7 @@ order by end_time desc;
 	    winner
 	
 	Do not use a JOIN.
-*/
+
 
 select 
 	t2.id as match_ID, 
@@ -220,4 +220,27 @@ where t1.name = 'Chester70'
 	and (t1.player_id = t2.winner_id)
 	
 order by end_time desc;
+*/
+
+/*
+	Query 11
+	
+	Retrieve all sessions that started between:
+	
+	2026-09-23 15:00:00 and 2026-09-23 15:05:00.
+	
+	Show:
+	    session ID
+	    player ID
+	    start time
+	
+	Order the results chronologically.
+
+*/
+select 	id as session_id,
+		player_id,
+		start_time
+from sessions
+where start_time between '2026-09-23 15:00:00' and '2026-09-23 15:05:00'
+order by start_time asc;
 
