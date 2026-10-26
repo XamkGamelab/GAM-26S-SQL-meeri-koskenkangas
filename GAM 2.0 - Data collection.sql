@@ -313,8 +313,8 @@ limit 10;
 select * from guilds
 order by name asc
 
-wireless cum, d0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae
-*/
+-- wireless cum, d0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae
+
 
 select 
 	t1.guild_id, 
@@ -328,3 +328,40 @@ from
 where t1.guild_id = 'd0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae' and t2.id = 'd0998fd7-42b1-26a2-d5b3-2aed3e7bf7ae' 
 	
 order by rank asc;
+*/
+
+/*
+	Query 15 - Challenge
+	
+	Write a query that retrieves all completed matches won by the player named Angelo14, without using a JOIN.
+	
+	Before writing the final query, write down the logical steps in plain English. For example:
+	
+	    Find the player's ID.
+	    Find completed matches where that ID is the winner.
+	    Return the requested match information.
+	
+	Your SQL should implement those steps.
+*/
+
+-- Get Angelo14's ID from the players table
+-- Use that ID to search for matches where Angelo14 is the winner in the match_end table (assuming that they won at least once)
+-- Return the information from those matches (and I might as well also return the name of the winner in plain text)
+
+select 
+	t2.id as match_id,
+	t2.player_0_id as player0, 
+	t2.player_1_id as player1, 
+	t2.winner_id,
+	t1.name as winner_name,
+	t2.end_time
+	
+from 
+	players t1, 
+	match_end t2
+	
+where 
+	t1.name = 'Angelo14' and 
+	t1.player_id = t2.winner_id
+	
+order by end_time desc;
