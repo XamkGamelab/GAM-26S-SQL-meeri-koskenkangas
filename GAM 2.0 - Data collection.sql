@@ -175,8 +175,6 @@ order by start_time desc;
 	Do not use a JOIN.	
 	Pay particular attention to the OR condition.
 
-	-- I need to make a new column for the result of subtracting the match_start from match_end using the subtime opetator
-*/
 
 select 
 	t2.id as matchID, 
@@ -191,6 +189,35 @@ from
 	
 where t1.name = 'ElbertKihn' 
 	and (t1.player_id = t2.player_0_id 
-	or t1.player_id = t2.player_1_id)
+	or   t1.player_id = t2.player_1_id)
 	
 order by end_time desc;
+*/
+
+/*
+	Query 10
+	
+	Retrieve all completed matches won by Chester70.
+	
+	Show:	
+	    match ID
+	    completion time
+	    winner
+	
+	Do not use a JOIN.
+*/
+
+select 
+	t2.id as match_ID, 
+	t2.end_time,
+	t2.winner_id as winner
+	
+from 
+	players t1, 
+	match_end t2
+	
+where t1.name = 'Chester70' 
+	and (t1.player_id = t2.winner_id)
+	
+order by end_time desc;
+
